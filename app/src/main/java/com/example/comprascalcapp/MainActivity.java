@@ -3,6 +3,7 @@ package com.example.comprascalcapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    private int total;
+    private float total;
 
     TextView txt_total;
     Button btn_agregar;
@@ -35,21 +36,32 @@ public class MainActivity extends AppCompatActivity {
 
     private View.OnClickListener agregarElemento = new View.OnClickListener() {
         public void onClick(View v) {
-            //float valorUno = txt_cantidad.getText();
+            float cantidad = Float.parseFloat(txt_cantidad.getText().toString());
+            float precio = Float.parseFloat(txt_precio.getText().toString());
+            Sumar(cantidad*precio);
+
+            //agregar un elemento
+
+
+            txt_total.setText(""+total);
+
+            //vaciamos textbox
+            txt_precio.setText("");
+            txt_cantidad.setText("");
         }
-        public void Sumar(int cantidad){
+        public void Sumar(float cantidad){
             setTotal(getTotal()+cantidad);
         }
-        public void Restar(int cantidad){
+        public void Restar(float cantidad){
             setTotal(getTotal()-cantidad);
         }
     };
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 }
